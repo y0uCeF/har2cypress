@@ -19,6 +19,14 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "generate": "node src/index.js sample.har cypress/e2e/generated/har-generated.spec.js"
+  },
+  "dependencies": {
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "cypress": "^13.0.0",
+    "@types/node": "^20.0.0"
   }
 }
