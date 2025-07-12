@@ -1,0 +1,24 @@
+{
+  "name": "har2cypress",
+  "version": "1.0.0",
+  "description": "Generate cypress specs from har files",
+  "keywords": [
+    "har",
+    "cypress"
+  ],
+  "homepage": "https://github.com/y0uCeF/har2cypress#readme",
+  "bugs": {
+    "url": "https://github.com/y0uCeF/har2cypress/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/y0uCeF/har2cypress.git"
+  },
+  "license": "Apache-2.0",
+  "author": "Youcef NAFA",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
