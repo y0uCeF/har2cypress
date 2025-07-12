@@ -7,15 +7,19 @@ exports.generateSpec = (requests) => {
 describe('HAR-generated tests ${testId}', () => {
   ${requests.map(req => `
   it('${req.method} ${req.url}', () => {
-    cy.intercept('${req.method}', '${req.url}', {
-      statusCode: ${req.status},
-      headers: ${JSON.stringify(req.headers, null, 2)},
-      body: ${JSON.stringify(req.body, null, 2)}
-    }).as('req${req.id}');
+    cy.intercept('${req.method}', '${req.url}').as('apiRequest');
     
-    cy.visit('${req.url}');
-    cy.wait('@req${req.id}').then((interception) => {
-      expect(interception.response.statusCode).to.eq(${req.status});
+    cy.request({
+      method: '${req.method}',
+      url: '${req.url}',
+      ${req.requestBody ? `body: ${JSON.stringify(req.requestBody, null, 2)},` : ''}
+      failOnStatusCode: false
+    });
+
+    cy.wait('@apiRequest').then((interception) => {
+      cy.wrap(interception.response.statusCode).should('eq', ${req.status});
+      cy.wrap(interception.response.headers).should('deep.include', ${JSON.stringify(req.headers, null, 2)});
+      cy.wrap(interception.response.body).should('deep.eq', ${JSON.stringify(req.body, null, 2)});
     });
   });`).join('\n')}
 });
