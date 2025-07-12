@@ -3,6 +3,7 @@ const { v4: uuidv4 } = require('uuid');
 exports.generateSpec = (requests) => {
   const testId = uuidv4().substring(0, 8);
   return `// Auto-generated test spec from HAR file
+/// <reference types="cypress" />
 describe('HAR-generated tests ${testId}', () => {
   ${requests.map(req => `
   it('${req.method} ${req.url}', () => {
