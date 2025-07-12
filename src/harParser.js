@@ -16,6 +16,6 @@ exports.parseHar = (harJson) => {
       acc[name] = value;
       return acc;
     }, {}),
-    body: entry.response.content.text
+    responseBody: entry.response.content.text
   }));
 };

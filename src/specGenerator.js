@@ -19,7 +19,7 @@ describe('HAR-generated tests ${testId}', () => {
     cy.wait('@apiRequest').then((interception) => {
       cy.wrap(interception.response.statusCode).should('eq', ${req.status});
       cy.wrap(interception.response.headers).should('deep.include', ${JSON.stringify(req.headers, null, 2)});
-      cy.wrap(interception.response.body).should('deep.eq', ${JSON.stringify(req.body, null, 2)});
+      cy.wrap(interception.response.body).should('deep.eq', ${JSON.stringify(req.responseBody, null, 2)});
     });
   });`).join('\n')}
 });
