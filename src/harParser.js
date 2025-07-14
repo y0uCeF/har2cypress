@@ -11,8 +11,12 @@ exports.parseHar = (harJson) => {
     url: entry.request.url,
     method: entry.request.method,
     requestBody: entry.request.postData?.text,  // Capture request body with null safety
+    requestHeaders: entry.request.headers.reduce((acc, { name, value }) => {
+      acc[name] = value;
+      return acc;
+    }, {}),
     status: entry.response.status,
-    headers: entry.response.headers.reduce((acc, { name, value }) => {
+    responseHeaders: entry.response.headers.reduce((acc, { name, value }) => {
       acc[name] = value;
       return acc;
     }, {}),
